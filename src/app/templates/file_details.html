@@ -1,0 +1,83 @@
+<!doctype html>
+<head>
+    <title>Imagenes Procesadas</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <h1>Imagenes Procesadas</h1>
+    <div style="text-align: center;">
+        <button type="button" onclick="window.location.href='{{ url_for('home') }}';" class="btn"><i class="fa fa-home"></i> Inicio</button>
+    </div>
+        {% if images is defined %}
+            {% if images %}
+                <table style="margin: 0 auto; width: 100%;">
+                    {% for item in images %}
+                    <tr>
+                        <td>
+                            <img src="{{ url_for('download_file', parent=item[0].parent, filename=item[0].filename) }}" alt="processed image" width="400">
+                        </td>
+                        <td>
+                            {% if item[0].description %}
+                                {% if item[0].description is mapping %}
+                                    {% for key, value in item[0].description.items() %}
+                                        <p>{{key}}:</p>
+                                        <ul>
+                                            {% for propkey, propvalue in value.items() %}
+                                                {% if propkey == 'color' %}
+                                                    <li><strong>{{ propkey }}</strong>: <span class="{{ propvalue }}">{{ propvalue }}</span></li> 
+                                                {% else %}
+                                                    <li><strong>{{ propkey }}</strong>: {{ propvalue }}</li> 
+                                                {% endif %}
+                                            {% endfor %}
+                                        </ul>
+                                    {% endfor %}
+                                {% else %}
+                                    {% for desc in item[0].description %}
+                                        <p>{{desc}}</p>
+                                    {% endfor %}
+                                {% endif %}
+                            {% else %}
+                                <p>Ops, no se encontró ningún dato en la imagen.</p>
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if item[1] is defined %}
+                                <img src="{{ url_for('download_file', parent=item[1].parent, filename=item[1].filename) }}" alt="processed image" width="400">
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if item[1] is defined %}
+                                {% if item[1].description %}
+                                    {% if item[1].description is mapping %}
+                                        {% for key, value in item[1].description.items() %}
+                                            <p>{{key}}:</p>
+                                            <ul>
+                                                {% for propkey, propvalue in value.items() %}
+                                                    {% if propkey == 'color' %}
+                                                        <li><strong>{{ propkey }}</strong>: <span class="{{ propvalue }}">{{ propvalue }}</span></li> 
+                                                    {% else %}
+                                                        <li><strong>{{ propkey }}</strong>: {{ propvalue }}</li> 
+                                                    {% endif %}
+                                                {% endfor %}
+                                            </ul>
+                                        {% endfor %}
+                                    {% else %}
+                                        {% for desc in item[1].description %}
+                                            <p>{{desc}}</p>
+                                        {% endfor %}
+                                    {% endif %}
+                                {% else %}
+                                    <p>Ops, no se encontró ningún dato en la imagen.</p>
+                                {% endif %}
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </table>
+                <div style="text-align: center;">
+                    <button type="button" onclick="window.location.href='{{ url_for('home') }}';" class="btn"><i class="fa fa-home"></i> Inicio</button>
+                </div>
+            {% endif %}
+        {% endif %}
+</body>
