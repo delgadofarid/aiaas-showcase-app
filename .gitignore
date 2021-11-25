@@ -1,3 +1,8 @@
+# app specific
+src/app/uploads/*
+!src/app/uploads/.gitkeep
+creds/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -133,8 +138,3 @@ dmypy.json
 
 # Etc
 .idea
-
-# app specific
-src/app/uploads/*
-!src/app/uploads/.gitkeep
-creds/
