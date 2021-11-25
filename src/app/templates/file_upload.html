@@ -3,18 +3,23 @@
     <title>Computer Vision in Action!</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="{{ url_for('static', filename='js/jquery.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 </head>
 <body>
-    <h1>Visión de Computador en Acción</h1>
-    <form action='' method="POST" enctype="multipart/form-data" style="text-align: center;">
-        <p>Sube las fotos que deseas procesar y selecciona el tipo de tarea a ejecutar:</p>
-        <p><input type='file' name='file[]' multiple=''></p>
-        <select name="task" method="GET" action="/">
-            <option value="{{tasks[0][0]}}" selected>{{tasks[0][1]}}</option>
-            {% for task in tasks[1:] %}
-                <option value="{{task[0]}}">{{task[1]}}</option>
-            {% endfor %}
-        </select>
-        <p><button type="submit" class="btn"><i class="fa fa-upload"></i> Subir</button></p>
-    </form>
+    <div id="loading"></div>
+    <div id="content">
+        <h1>Visión de Computador en Acción</h1>
+        <form action='' method="POST" enctype="multipart/form-data" style="text-align: center;">
+            <p>Sube las fotos que deseas procesar y selecciona el tipo de tarea a ejecutar:</p>
+            <p><input type='file' name='file[]' multiple=''></p>
+            <select name="task" method="GET" action="/">
+                <option value="{{tasks[0][0]}}" selected>{{tasks[0][1]}}</option>
+                {% for task in tasks[1:] %}
+                    <option value="{{task[0]}}">{{task[1]}}</option>
+                {% endfor %}
+            </select>
+            <p><button type="submit" class="btn" onclick="loading();"><i class="fa fa-upload"></i> Subir</button></p>
+        </form>
+    </div>
 </body>

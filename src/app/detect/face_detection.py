@@ -57,9 +57,9 @@ class FaceProcessor:
             data[f"Rostro {idx + 1}"] = {
                 "color": color,
                 "confianza": f"{face.detection_confidence * 100:.2f}%",
-                "emoción.alegría": likelihood_name[face.anger_likelihood],
+                "emoción.alegría": likelihood_name[face.joy_likelihood],
                 "emoción.tristeza": likelihood_name[face.sorrow_likelihood],
-                "emoción.enfado": likelihood_name[face.joy_likelihood],
+                "emoción.enfado": likelihood_name[face.anger_likelihood],
                 "emoción.sorpresa": likelihood_name[face.surprise_likelihood],
                 "imgprop.underexposed": likelihood_name[face.under_exposed_likelihood],
                 "imgprop.blurred": likelihood_name[face.blurred_likelihood],

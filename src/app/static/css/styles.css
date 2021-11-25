@@ -61,3 +61,16 @@ td {
 .btn:hover {
     background-color: RoyalBlue;
 }
+
+div#loading {
+    width: 35px;
+    height: 35px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    display: none;
+    background: url(/static/img/loadingimage.gif) no-repeat;
+    cursor: wait;
+}
