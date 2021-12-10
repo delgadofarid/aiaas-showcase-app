@@ -2,13 +2,15 @@
 name = "app"
 version = "0.1.0"
 description = ""
-authors = ["Farid Delgado <farid.delgado@thomsonreuters.com>"]
+authors = ["Farid Delgado <delgado.farid@gmail.com>"]
 
 [tool.poetry.dependencies]
 python = "~3.7"
 google-cloud-vision = "^2.6.2"
 Flask = "^2.0.2"
 matplotlib = "^3.5.0"
+whatimage = "^0.0.3"
+pyheif = "^0.6.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"

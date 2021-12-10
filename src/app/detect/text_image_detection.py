@@ -19,7 +19,7 @@ class OCRProcessor:
             self.client = vision.ImageAnnotatorClient()
 
     
-    def process_image(self, path: str) -> Tuple[Optional[str], Iterable]:
+    def process_image(self, path: Path) -> Tuple[Optional[Path], Iterable]:
         
         with io.open(path, 'rb') as image_file:
             content = image_file.read()
@@ -39,7 +39,7 @@ class OCRProcessor:
         color = "cyan"
 
         data = list()
-        dataset = set()
+        dataset = list()
         plt.figure()
         img = mpimg.imread(path)
         plt.imshow(img)
@@ -48,7 +48,8 @@ class OCRProcessor:
             if "locale" in text:
                 continue
             
-            dataset.add(text.description)
+            if text.description not in dataset:
+                dataset.append(text.description)
             
             coord = [[vertex.x, vertex.y] for vertex in text.bounding_poly.vertices]
             coord.append(coord[0]) #repeat the first point to create a 'closed loop'
@@ -58,7 +59,7 @@ class OCRProcessor:
         data.append(", ".join(dataset))
         
         file_name = os.path.splitext(os.path.basename(path))[0]
-        modified_file_path = os.path.join(Path(path).parent.absolute(), file_name + '-altered.png')
+        modified_file_path = Path(os.path.join(Path(path).parent.absolute(), file_name + '-altered.png'))
         plt.savefig(modified_file_path, format='png')
         
         return modified_file_path, data

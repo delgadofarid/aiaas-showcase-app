@@ -2,6 +2,8 @@ from typing import Iterable, Optional, Tuple
 from google.cloud import vision
 import io
 
+from pathlib import Path
+
 
 class LabelProcessor:
 
@@ -12,7 +14,7 @@ class LabelProcessor:
             self.client = vision.ImageAnnotatorClient()
 
     
-    def process_image(self, path: str) -> Tuple[Optional[str], Iterable]:
+    def process_image(self, path: Path) -> Tuple[Optional[Path], Iterable]:
         
         with io.open(path, 'rb') as image_file:
             content = image_file.read()

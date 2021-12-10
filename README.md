@@ -5,7 +5,8 @@ existing cloud services can offer in terms of AI services accessible to anyone.
 
 ## Requirements
 
-- Python 3.7+
+- Python 3.7.*
+- pyheif: refer to https://github.com/carsales/pyheif#installation for instructions for various OSes
 - Poetry: for instructions see https://python-poetry.org/docs/
 
 ## Installation

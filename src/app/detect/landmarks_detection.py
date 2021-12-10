@@ -19,7 +19,7 @@ class LandmarkProcessor:
             self.client = vision.ImageAnnotatorClient()
 
     
-    def process_image(self, path: str) -> Tuple[Optional[str], Iterable]:
+    def process_image(self, path: Path) -> Tuple[Optional[Path], Iterable]:
         
         with io.open(path, 'rb') as image_file:
             content = image_file.read()
@@ -60,7 +60,7 @@ class LandmarkProcessor:
             plt.plot(xs, ys, color=color)
         
         file_name = os.path.splitext(os.path.basename(path))[0]
-        modified_file_path = os.path.join(Path(path).parent.absolute(), file_name + '-altered.png')
+        modified_file_path = Path(os.path.join(Path(path).parent.absolute(), file_name + '-altered.png'))
         plt.savefig(modified_file_path, format='png')
         
         return modified_file_path, data
